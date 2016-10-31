@@ -25,6 +25,7 @@ function Player(){
 	
 	Updater.Add(this);
 	Input.Add(this);
+	
 
 }
 
