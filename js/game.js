@@ -6,7 +6,7 @@ var Game = (function () {
 	public.sphere = undefined;
 	public.newShip = undefined;
 	public.player2 = undefined;
-	public.enemies = undefined;
+	public.enemies = [];
 	public.interval =  undefined;
 	
 	public.Start = function(){
@@ -38,9 +38,10 @@ var Game = (function () {
 			var enemy = new Enemy();
 			enemy.add(ship2);
 			Loader.scene.add(enemy);
-			enemy.position.set( 13, (Math.random () - 0.5 ) * 100, 0);
+			enemy.position.set( 17, (Math.random () - 0.5 ) * 100, 0);
 			enemy.rotation.y -= Math.PI / 2;
 			enemy.scale.set( 0.5, 0.5, 0.5 );
+			public.enemies.push(enemy);
 		});
 		
 	};
