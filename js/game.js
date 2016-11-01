@@ -7,6 +7,7 @@ var Game = (function () {
 	public.newShip = undefined;
 	public.player2 = undefined;
 	public.enemies = [];
+	public.player = undefined;
 	public.interval =  undefined;
 	
 	public.Start = function(){
@@ -25,9 +26,9 @@ var Game = (function () {
 			ship1.scale.set( 0.7, 0.7, 0.7 );
 			ship1.rotation.y += Math.PI / 2;	
 
-			var player = new Player();
-			player.add(ship1);
-			Loader.scene.add(player);
+			public.player = new Player();
+			public.player.add(ship1);
+			Loader.scene.add(public.player);
 		
 		});
 	

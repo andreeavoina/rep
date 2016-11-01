@@ -7,9 +7,11 @@ var main = (function () {
 
 		Animate.renderer = new THREE.WebGLRenderer({antialias:true});
 		Animate.renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( Animate.renderer.domElement );
+		var canvas = document.getElementById('webgl');
+		canvas.appendChild( Animate.renderer.domElement );
+		//document.body.appendChild( Animate.renderer.domElement );
 		
-		//var controls = new THREE.OrbitControls( Animate.camera, Animate.renderer.domElement );
+		var controls = new THREE.OrbitControls( Animate.camera, Animate.renderer.domElement );
 		
 		var light = new THREE.DirectionalLight( 0xffffff, 1 );
 		light.position.set( 30, 30, 3 );

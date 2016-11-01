@@ -1,8 +1,9 @@
 function Player(){
 
 	THREE.Object3D.call(this);
+	var raycaster = new THREE.Raycaster(this.position, new THREE.Vector3(1, 0, 0), 0, 1);
 	
-	this.health = 10;
+	this.score = 0;
 	
 	
 	this.Update = function(){
@@ -13,7 +14,10 @@ function Player(){
 		var geometry = new THREE.SphereBufferGeometry(0.5,20,20);
 		var mat = new THREE.MeshPhongMaterial({ color: 0xF01111, specular: 0x009900, shininess: 30, shading: THREE.FlatShading  });
 		var mesh = new THREE.Mesh (geometry, mat);
-		var bullet = new Bullet();
+		var bullet = new Bullet({
+			targets: Game.enemies, 
+			directionVector: new THREE.Vector3(1, 0, 0)
+		});
 		bullet.add(mesh);
 		bullet.position.copy(this.position);
 		Loader.scene.add( bullet );		
