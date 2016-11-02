@@ -9,6 +9,7 @@ var Game = (function () {
 	public.enemies = [];
 	public.player = undefined;
 	public.interval =  undefined;
+	public.score = 0;
 	
 	public.Start = function(){
 		public.AddPlayer();

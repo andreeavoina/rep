@@ -2,9 +2,13 @@ function Enemy(){
 
 	THREE.Object3D.call(this);
 	
-	var speed = 0.1;	
+	var speed = 0.1;
+	var health = 3;
 	
 	var directionVector = new THREE.Vector3(-1, 0, 0);
+	var timeout = setInterval( function(){
+		this.Shoot();		
+	}.bind(this), 3000 );
 	
 	this.Shoot = function(){		
 		var geometry = new THREE.SphereBufferGeometry(0.5,20,20);
@@ -19,18 +23,23 @@ function Enemy(){
 	
 	this.Update = function(){
 		this.position.x -= speed;
+	};		
+	
+	this.TakeDamage = function(){
+		if(health <= 0)
+			this.Die();
 	};
+
+	this.Die = function(){	
+		Loader.scene.remove(this);
+		Game.score += 100;
+		$('#score').text(Game.score);
+		clearTimeout(timeout);
+		Updater.Remove(this);
+	};
+	
 	
 
-	this.Die = function(){		
-		Updater.Remove(this);
-		Loader.scene.remove(this);
-	};
-	
-	
-	setInterval( function(){
-		this.Shoot();		
-	}.bind(this), 3000 );
 	Updater.Add(this);	
 		
 }

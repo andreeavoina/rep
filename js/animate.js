@@ -5,10 +5,11 @@ var Animate = (function () {
 	public.renderer = undefined;
 	public.camera = undefined;
 	
-	public.Render = function(){
-
+	public.Render = function(time){
+		
 		requestAnimationFrame( public.Render );		
-		Updater.Update();
+		Updater.Update();		
+		$('#score').text(Game.score++);
 		public.renderer.render( Loader.scene, public.camera);
 		
 	};

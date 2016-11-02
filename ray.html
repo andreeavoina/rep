@@ -17,12 +17,13 @@
 		<div id="wrapper">
 			<table style = "border-collapse: collapse; margin-top: 10px; margin-left: 10px;">
 					<tr>
-						<td style="font-size:20px"><b>Health</b></td>
+						<td id="health" style="font-size:20px"><b>Health</b></td>
 						<td></td>     
 					</tr>
 					
 					<tr>
-						<td style="font-size:20px"><b>Score</b></td>
+						<td style="font-size:20px">score:</td>
+						<td id="score" style="font-size:20px"></td>
 						<td></td>
 					</tr>
 				
@@ -30,6 +31,7 @@
 		</div>
 		<div id="webgl"></div>
 		
+		<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>		
         <script src = "lib/three.js"></script>
         <script src = "lib/OrbitControls.js"></script>	
         <script src = "js/updater.js"></script>		

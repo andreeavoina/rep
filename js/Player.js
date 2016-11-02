@@ -24,6 +24,14 @@ function Player(){
 		
 	};
 	
+	this.TakeDamage = function(){
+		
+	};
+	
+	this.Die = function(){	
+	
+	};
+	
 	Updater.Add(this);
 	Input.Add(this);
 

@@ -6,7 +6,7 @@ function Bullet(settings){
 	
 	if(targets.constructor !== Array)
 		targets = [targets];	
-	
+	 
 	var directionVector = settings.directionVector;
 	
 	var raycaster = new THREE.Raycaster(this.position, directionVector, 0, 1);
@@ -19,8 +19,14 @@ function Bullet(settings){
 		if(collisionResults.length > 0)
 			collisionResults[0].object.parent.Die();		
 
-		var moveVector(directionVector.multiplyScalar(speed))
+		//var moveVector(directionVector.multiplyScalar(speed))
 		this.position.add(directionVector)
+		
+		//$(document).ready(function(){
+			//$('#health').click(function(){
+				//$('#health')
+			//});
+		//});
 		
 		//this.position.x += speed;
 	};
