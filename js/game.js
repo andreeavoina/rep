@@ -10,14 +10,35 @@ var Game = (function () {
 	public.player = undefined;
 	public.interval =  undefined;
 	public.score = 0;
+	public.spawnRate = 3000;
+	public.healthPoint = '<td><div id="ball" style= "height: 15px; width: 15px; border-radius: 100%; background-color: #ffcc00; position: relative;"></div></td>';
 	
-	public.Start = function(){
+	public.Start = function(){		
+		Animate.Render();
 		public.AddPlayer();
 		StartInt();
 	};
 	
 	public.Stop = function(){
+		Updater.Stop();
+		Input.Stop();
+		Animate.Stop();
+		clearTimeout(public.interval);
 		
+		for	(var i = 0; i < public.enemies.length; i++)
+			public.enemies[i].Die();
+	};
+	
+	public.RemoveEnemy = function(obj){
+		var index = public.enemies.indexOf(obj);
+		if(index !== -1)
+			public.enemies.splice(index, 1);
+	};
+	
+	public.RemovePlayer = function(obj){
+		var index = public.player.indexOf(obj);
+		if(index !== -1)
+			public.player.splice(index, 1);
 	};
 	
 	
@@ -31,6 +52,10 @@ var Game = (function () {
 			public.player.add(ship1);
 			Loader.scene.add(public.player);
 		
+			
+			for(var i = 0; i < public.player.health; i++)
+				$('#healthBar').append(public.healthPoint);
+			
 		});
 	
 	};
@@ -49,7 +74,7 @@ var Game = (function () {
 	};
 	
 	function StartInt() {
-		public.interval = setInterval( public.AddPlayer2, 3000 );
+		public.interval = setInterval( public.AddPlayer2, public.spawnRate );
 	}
 	
 	

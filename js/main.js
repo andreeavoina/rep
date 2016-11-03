@@ -25,7 +25,7 @@ var main = (function () {
 		Game.AddPlane();	
 		Game.AddAsteroids();
 		Game.Start();
-		Animate.Render();
+		//Animate.Render();
 
 	}
 	

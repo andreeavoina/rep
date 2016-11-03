@@ -16,17 +16,15 @@ function Bullet(settings){
 		raycaster.set(this.position, directionVector);
 		var collisionResults = raycaster.intersectObjects( targets, true );
 		
-		if(collisionResults.length > 0)
-			collisionResults[0].object.parent.Die();		
+		if(collisionResults.length > 0){
+			collisionResults[0].object.parent.TakeDamage();		
+			Updater.Remove(this);
+			Loader.scene.remove(this);
+		}
 
 		//var moveVector(directionVector.multiplyScalar(speed))
 		this.position.add(directionVector)
 		
-		//$(document).ready(function(){
-			//$('#health').click(function(){
-				//$('#health')
-			//});
-		//});
 		
 		//this.position.x += speed;
 	};

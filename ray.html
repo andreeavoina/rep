@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>game</title>
+		<link rel= 'stylesheet' type='text/css' href= 'stylesheet.css'/>
         <style>
             body { margin: 0; overflow: hidden}
 			#webgl { position:fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:1}
@@ -15,18 +16,19 @@
     </head>
     <body>
 		<div id="wrapper">
+		
 			<table style = "border-collapse: collapse; margin-top: 10px; margin-left: 10px;">
-					<tr>
-						<td id="health" style="font-size:20px"><b>Health</b></td>
-						<td></td>     
-					</tr>
-					
-					<tr>
-						<td style="font-size:20px">score:</td>
-						<td id="score" style="font-size:20px"></td>
-						<td></td>
-					</tr>
-				
+
+					<tr style="font-size:22px"><b>Health:</b></tr>
+					<tr id="healthBar">
+					</tr>				
+			</table>
+			
+			<table style = "border-collapse: collapse; margin-top: 20px; margin-left: 10px;">
+				<tr>
+					<td style="font-size:22px"><b>Score:</b></td>
+					<td id="score" style="font-size:22px"></td>						
+				</tr>			
 			</table>
 		</div>
 		<div id="webgl"></div>

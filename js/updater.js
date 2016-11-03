@@ -22,6 +22,10 @@ var Updater = (function () {
 		
 	};
 	
+	updater.Stop = function(){
+		objects = [];
+	};
+	
 	return updater;
 
 }());

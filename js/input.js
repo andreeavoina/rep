@@ -10,6 +10,10 @@ var Input = (function () {
 		objects.push(obj);
 	}
 	
+	public.Stop = function(){
+		objects = [];
+	}
+	
 	public.GetHitOnPlane = function() {
 		raycaster.setFromCamera( mouse, Animate.camera );					
 		var intersects = raycaster.intersectObject( Game.plane );
@@ -25,8 +29,7 @@ var Input = (function () {
 	function onMouseDown( event ){
 		for(var i = 0; i < objects.length; i++){
 			objects[i].OnMouseDown();
-		}
-		
+		}		
 	}
 	
 	window.addEventListener( 'mousemove', onMouseMove, false );
