@@ -3,12 +3,13 @@ function Enemy(){
 	THREE.Object3D.call(this);
 	
 	var speed = 0.1;
-	this.health = 3;
+	var rateOfFire = 1500;
+	this.health = 2;
 	
 	var directionVector = new THREE.Vector3(-1, 0, 0);
 	var timeout = setInterval( function(){
 		this.Shoot();		
-	}.bind(this), 500 );
+	}.bind(this), rateOfFire );
 	
 	this.Shoot = function(){		
 		var geometry = new THREE.SphereBufferGeometry(0.5,20,20);

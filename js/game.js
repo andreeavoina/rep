@@ -10,7 +10,7 @@ var Game = (function () {
 	public.player = undefined;
 	public.interval =  undefined;
 	public.score = 0;
-	public.spawnRate = 3000;
+	public.spawnRate = 2000;
 	public.healthPoint = '<td><div id="ball" style= "height: 15px; width: 15px; border-radius: 100%; background-color: #ffcc00; position: relative;"></div></td>';
 	
 	public.Start = function(){		
@@ -65,7 +65,7 @@ var Game = (function () {
 			var enemy = new Enemy();
 			enemy.add(ship2);
 			Loader.scene.add(enemy);
-			enemy.position.set( 17, (Math.random () - 0.5 ) * 100, 0);
+			enemy.position.set( 45, random(-21, 21), 0);
 			enemy.rotation.y -= Math.PI / 2;
 			enemy.scale.set( 0.5, 0.5, 0.5 );
 			public.enemies.push(enemy);
@@ -135,6 +135,10 @@ var Game = (function () {
 				public.sky.add(newRock);			
 			}
 		});
+	}
+	
+	function random(min, max){
+		return Math.floor(Math.random()*(max-min+1)+min);
 	}
 	
 	return public;

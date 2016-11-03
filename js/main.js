@@ -2,8 +2,8 @@ var main = (function () {
 	
 	function Start(){
 		Loader.scene = new THREE.Scene();
-		Animate.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-		Animate.camera.position.set(0, 0, 30);
+		Animate.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
+		Animate.camera.position.set(0, 0, 50);
 
 		Animate.renderer = new THREE.WebGLRenderer({antialias:true});
 		Animate.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -11,7 +11,7 @@ var main = (function () {
 		canvas.appendChild( Animate.renderer.domElement );
 		//document.body.appendChild( Animate.renderer.domElement );
 		
-		var controls = new THREE.OrbitControls( Animate.camera, Animate.renderer.domElement );
+		//var controls = new THREE.OrbitControls( Animate.camera, Animate.renderer.domElement );
 		
 		var light = new THREE.DirectionalLight( 0xffffff, 1 );
 		light.position.set( 30, 30, 3 );
