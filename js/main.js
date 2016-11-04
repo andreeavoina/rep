@@ -20,12 +20,15 @@ var main = (function () {
 		var amblight = new THREE.AmbientLight( 0xFFFFFF, 0.5 ); 
 		Loader.scene.add( amblight );
 		
+		
+		
 		Game.AddPlanets();
 		Game.AddPlanets2();
 		Game.AddPlane();	
 		Game.AddAsteroids();
+		Game.ParticleSystem();
 		Game.Start();
-		//Animate.Render();
+		Animate.Render();
 
 	}
 	

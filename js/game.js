@@ -12,6 +12,8 @@ var Game = (function () {
 	public.score = 0;
 	public.spawnRate = 2000;
 	public.healthPoint = '<td><div id="ball" style= "height: 15px; width: 15px; border-radius: 100%; background-color: #ffcc00; position: relative;"></div></td>';
+	public.particleCount = 2000;
+	public.particles = new THREE.Geometry();
 	
 	public.Start = function(){		
 		Animate.Render();
@@ -39,6 +41,40 @@ var Game = (function () {
 		var index = public.player.indexOf(obj);
 		if(index !== -1)
 			public.player.splice(index, 1);
+	};
+	
+	
+	public.ParticleSystem = function() {
+		
+		var loader = new THREE.TextureLoader();
+		var texture = loader.load('particle_1.png');
+		var material  = new THREE.ParticleBasicMaterial({map: texture, size: 5, transparent: true, blending: THREE.AdditiveBlending });
+		var size = 200;
+		
+		for(var i = 0; i < public.particleCount; i++){
+			var posX = ( Math.random() - 0.5 ) * size;
+			var posY = ( Math.random() - 0.5 ) * size;
+			var posZ = ( Math.random() - 0.5 ) * size;
+			var particle =  new THREE.Vector3 (posX, posY, posZ);
+			
+			public.particles.vertices.push(particle);
+		} 
+		public.particleSystem = new THREE.ParticleSystem(public.particles, material);
+		Loader.scene.add( public.particleSystem );	
+		
+		Updater.Add ({
+			Update: function(){
+				
+				for(var i = 0; i < public.particleSystem.geometry.vertices.length; i++){
+					var vert = public.particleSystem.geometry.vertices[i];
+					vert.x -= 0.1;
+					if(vert.x < -100)
+						vert.x = 100;
+				}
+				
+				public.particleSystem.geometry.verticesNeedUpdate = true;
+			}			
+		});
 	};
 	
 	
