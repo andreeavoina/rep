@@ -11,9 +11,10 @@ var Game = (function () {
 	public.interval =  undefined;
 	public.score = 0;
 	public.spawnRate = 2000;
-	public.healthPoint = '<td><div id="ball" style= "height: 15px; width: 15px; border-radius: 100%; background-color: #ffcc00; position: relative;"></div></td>';
+	public.healthPoint = '<td><div id="healthBar" style= "height: 15px; width: 15px; border-radius: 100%; background-color: #ffcc00; position: relative;"></div></td>';
 	public.particleCount = 2000;
-	public.particles = new THREE.Geometry();
+	public.particles = new THREE.Geometry();	
+	
 	
 	public.Start = function(){		
 		Animate.Render();
@@ -77,6 +78,42 @@ var Game = (function () {
 		});
 	};
 	
+	public.Explosion = function(position) {		
+		var loader = new THREE.TextureLoader();
+		var texture = loader.load('fire_particle.png');
+		var material  = new THREE.ParticleBasicMaterial({map: texture, size: 35, transparent: true, blending: THREE.AdditiveBlending });
+		var explosion = new THREE.Geometry();
+		
+		for(var i = 0; i < 4; i++){
+			var boom =  new THREE.Vector3 (position.x, position.y, position.z);			
+			explosion.vertices.push(boom);			
+		} 
+		explosion.verticesNeedUpdate = true;
+		var particleExplosion = new THREE.ParticleSystem(explosion, material);
+		Loader.scene.add( particleExplosion );	
+		var directions = [new THREE.Vector3(-1, 0, 0),
+						  new THREE.Vector3 (1, 0, 0),
+						  new THREE.Vector3(0, -1, 0), 
+						  new THREE.Vector3(0, 1, 0)];
+		
+		Updater.Add ({
+			lifetime: 0,
+			Update: function(){		
+				this.lifetime++;
+				if(this.lifetime > 10){
+					Updater.Remove(this);
+					Loader.scene.remove( particleExplosion );
+				}
+					
+				for(var i = 0; i < particleExplosion.geometry.vertices.length; i++){
+					var vert = particleExplosion.geometry.vertices[i];
+					vert.add(directions[i]);
+				}
+				
+				particleExplosion.geometry.verticesNeedUpdate = true;
+			}		
+		});
+	};
 	
 	public.AddPlayer = function() {
 		Loader.load( "warp_ship.js", function( ship1 ) {

@@ -13,7 +13,7 @@ function Enemy(){
 	
 	this.Shoot = function(){		
 		var geometry = new THREE.SphereBufferGeometry(0.5,20,20);
-		var mat = new THREE.MeshPhongMaterial({ color: 0xFF0000, specular: 0x009900, shininess: 30, shading: THREE.FlatShading  });
+		var mat = new THREE.MeshBasicMaterial({ color: 0xFF0000, specular: 0x009900, shininess: 30, shading: THREE.FlatShading  });
 		var mesh = new THREE.Mesh (geometry, mat);
 		var bulletData = { targets: Game.player, directionVector: new THREE.Vector3(-1, 0, 0) };
 		var bullet = new Bullet(bulletData);
@@ -39,6 +39,7 @@ function Enemy(){
 		clearTimeout(timeout);
 		Updater.Remove(this);
 		Game.RemoveEnemy(this);
+		Game.Explosion(this.position);
 	};
 	
 	Updater.Add(this);	
